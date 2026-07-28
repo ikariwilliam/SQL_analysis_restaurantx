@@ -14,3 +14,9 @@ GROUP BY p.product_id
 ORDER BY total_sold ASC
 LIMIT 3;
 
+-- order volume by delivery axis
+SELECT axis, COUNT(order_id) AS total_orders
+FROM orders
+GROUP BY axis
+ORDER BY total_orders DESC
+
