@@ -55,3 +55,22 @@ Bottom 3 by units sold:
 - Top 5 sellers are tightly clustered (1,461–1,574 units), suggesting broad, even demand across the best performers rather than one runaway favorite
 - The weakest product sells roughly 8x fewer units than the top seller (190 vs. 1,574) — worth checking in a later question whether this is a pricing, availability, or genuine low-demand issue
 - Both Sides & Extras and Drinks & Beverage categories appear at *both* ends of the ranking — so it's not that a whole category underperforms, it's specific items within otherwise strong categories
+
+## Q2: Which Axis (Delivery Zone) Customers Order From Most and Least
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+Highest order volume:
+1. Ikota — 1,005 orders
+2. Ajah — 476 orders
+3. VGC — 455 orders
+
+Lowest order volume:
+1. General Paint — 17 orders
+2. LBS — 33 orders
+3. Sangotedo — 102 orders
+
+- Ikota accounts for roughly 20% of all orders on its own — more than double the next-closest zone (Ajah) — suggesting either a dense customer base or strong brand presence concentrated in that axis
+- General Paint and LBS are outliers at the low end, each under 35 orders — over 25x smaller than Ikota. Given the gap is this large, these may be smaller/newer delivery zones or edge-of-coverage areas rather than typical zones performing poorly
+- The remaining 14 zones fall in a much more gradual range (100–350 orders), suggesting the business has one dominant hub (Ikota) surrounded by a fairly even spread of secondary zones, plus two clear long-tail outliers
