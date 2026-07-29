@@ -349,14 +349,7 @@ See [sql/queries.sql](sql/queries.sql) for the full query.
   produce). A true supplier-effectiveness comparison would require multiple suppliers 
   competing within the same category, which this dataset doesn't include
 
-  ## Dashboard
+ ## Dashboard
 
-### Page 1: Overview
-![Page 1: Overview](dashboard/screenshots/page1_overview.jpg)
-
-- KPI summary (total orders, revenue, average order value, cancellation rate)
-- Order volume and revenue trends by day of week
-- Top 5 and bottom 3 products by units sold
-- Order volume by delivery axis (top 10 and bottom 10 zones)
-
-Full interactive file: [dashboard/Ikota_eats_dashboard.pbix](dashboard/Ikota_eats_dashboard.pbix)
+An interactive Power BI dashboard visualizing these findings is available here: 
+[dashboard/README.md](dashboard/README.md)
