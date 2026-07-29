@@ -87,6 +87,11 @@ support, was treated as part of the analysis rather than something to work aroun
 
 ---
 
+*A companion interactive Power BI dashboard visualizing these findings across 4 pages is 
+available here: [dashboard/README.md](dashboard/README.md)*
+
+---
+
 ## Q1: Top 5 and Bottom 3 Products by Units Sold
 See [sql/queries.sql](sql/queries.sql) for the full query.
 
