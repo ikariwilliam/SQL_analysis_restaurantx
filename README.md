@@ -96,3 +96,19 @@ sum of all orders for that day — these tell different stories.*
 - **Busiest day by order count and revenue: Friday** — 1,279 orders generating ₦40.5M, nearly double the next-highest day (Tuesday, ₦22.7M)
 - **Friday also has the lowest average order value** (₦31,694.50) — but this does NOT mean it's a weak sales day. High order volume more than compensates for smaller average order size, making Friday the strongest revenue day of the week by a wide margin
 - **Sunday is the genuinely weak day** — lowest order count (374) AND lowest total revenue (₦12.1M), despite a mid-pack average order value. Low volume, not low order value, is what drives Sunday's underperformance
+
+## Q4: Top 20 Most Frequent Customers (Orders Above ₦15k Only)
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+Top 5 of the 20 most frequent customers (counting only orders over ₦15,000):
+1. Gabriel Ojo — 113 qualifying orders
+2. Sarah Abiola — 104 qualifying orders
+3. Faith Olawale — 103 qualifying orders
+4. Paul Abiola — 102 qualifying orders
+5. Samuel Ibrahim — 101 qualifying orders
+
+- The top 20 customers all fall within a tight range of 81–113 qualifying orders each
+- There's a sharp drop-off right after rank 20 — the 21st most frequent customer has only 12 qualifying orders, less than a sixth of the 20th-ranked customer's total (81). This isn't a gradual decline; it's a clear break, suggesting these top 20 form a distinct high-frequency customer segment rather than simply being the natural tail end of a smooth distribution
+- This kind of sharp segmentation would be a strong candidate for a loyalty/VIP program targeting analysis, since these customers behave meaningfully differently from the rest of the customer base
