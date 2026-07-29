@@ -182,3 +182,4 @@ customers as single-purchase/non-returning. A real food delivery business would 
 show meaningful churn, with a portion of customers never returning after their first order. 
 This metric isn't representative of realistic customer retention behavior in this dataset 
 and should be interpreted with that limitation in mind.
+

@@ -84,3 +84,21 @@ FROM (
     FROM orders
     GROUP BY customer_id
 ) customer_orders
+
+-- Discount/pricing discrepancy check — orders where the recorded amount doesn't match the sum of item totals, or where discount % looks abnormally high
+WITH order_calc AS (
+    SELECT 
+        o.order_id,
+        o.subtotal_amount,
+        o.discount_amount,
+        o.final_amount_charged,
+        COALESCE(SUM(oi.quantity * oi.unit_price_at_sale), 0) AS calculated_subtotal
+    FROM orders o
+    LEFT JOIN order_items oi ON o.order_id = oi.order_id
+    GROUP BY o.order_id, o.subtotal_amount, o.discount_amount, o.final_amount_charged
+)
+SELECT *
+FROM order_calc
+WHERE subtotal_amount <> calculated_subtotal
+   OR (subtotal_amount - COALESCE(discount_amount, 0)) <> final_amount_charged
+   OR (COALESCE(discount_amount, 0) / NULLIF(subtotal_amount, 0)) > 0.5;
