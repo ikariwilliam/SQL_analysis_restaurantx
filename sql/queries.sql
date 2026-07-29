@@ -39,7 +39,7 @@ GROUP BY c.customer_id, c.name, c.axis
 ORDER BY order_count DESC
 LIMIT 20
 
--- Q4 5. Margin analysis — which products/areas are actually profitable vs. just high-volume
+-- Q5 5. Margin analysis — which products/areas are actually profitable vs. just high-volume
 -- Product margin
 SELECT 
     p.product_name,
@@ -62,3 +62,14 @@ JOIN products p ON oi.product_id = p.product_id
 JOIN orders o ON oi.order_id = o.order_id
 GROUP BY o.axis
 ORDER BY total_margin DESC
+
+-- Q6 6. Order cancellation rate — overall, and whether it's higher on certain days
+SELECT 
+    TO_CHAR(order_timestamp, 'Day') AS day_of_week,
+    COUNT(*) AS total_orders,
+    SUM(CASE WHEN order_status = 'Cancelled' THEN 1 ELSE 0 END) AS cancelled_orders,
+    ROUND(100.0 * SUM(CASE WHEN order_status = 'Cancelled' THEN 1 ELSE 0 END) / COUNT(*), 2) AS cancellation_rate_pct
+FROM orders
+GROUP BY TO_CHAR(order_timestamp, 'Day')
+ORDER BY cancellation_rate_pct DESC;
+
