@@ -78,6 +78,59 @@ supplier cost-effectiveness couldn't be cleanly separated from product category,
 supplier in this dataset supplies exactly one category with no overlap — so "supplier choice" 
 and "category" are confounded variables here.
 
+## Business Recommendations
+
+Based on the findings above, here are the operational actions this analysis points toward:
+
+**1. Investigate Friday's operational strain before scaling further.**
+Friday drives the most orders and the most revenue, but also the highest cancellation rate 
+(8.84%, 3x+ every other day) and the smallest average order size. Before treating Friday as 
+simply "the good day," it's worth reviewing staffing levels, rider capacity, and order 
+backlog specifically on Fridays — the cancellation spike suggests the business may already 
+be near capacity on its busiest day rather than smoothly absorbing the extra volume.
+
+**2. Review Rider Paul and CSR Peace individually, not as part of broader team policy.**
+Both are extreme, isolated outliers — Paul's 61% completion rate and 33% late-delivery rate, 
+and Peace's 16.75% cancellation rate, are not representative of their peer groups (91%+ 
+completion, 3–5% cancellation respectively). A team-wide policy change would be the wrong 
+response here; this calls for direct, individual performance conversations to understand 
+root cause (training gap, equipment/route issues, attendance pattern) before deciding on 
+next steps.
+
+**3. Shift marketing and menu emphasis toward margin, not just volume.**
+Sides & Extras and Drinks & Beverage dominate unit sales but underperform on margin, while 
+Grills & Suya items are consistently the most profitable despite moderate sales volume. 
+Promoting, bundling, or featuring Grills & Suya items more prominently (rather than 
+continuing to lead with the current best-sellers) would likely improve overall profitability 
+without needing to grow total order volume.
+
+**4. Protect and reinforce the Ikota hub, and make a deliberate call on the weakest zones.**
+Ikota is both the highest-volume and highest-margin delivery zone by a wide margin — it's 
+the business's core asset and worth prioritizing for reliability (staffing, rider coverage) 
+over expansion elsewhere. General Paint and LBS are consistently weakest on every 
+metric measured; rather than continuing to serve them at the same level, it's worth 
+deciding explicitly whether to invest in growing them or deprioritize them in favor of 
+stronger zones — the data doesn't support treating them the same as the rest of the network.
+
+**5. Audit the pricing/subtotal recording process.**
+2.2% of orders (110 of 5,000) show a mismatch between the recorded subtotal and the actual 
+sum of line items. While the discount and final-charge logic is fully consistent, this 
+subtotal discrepancy is a data integrity issue worth tracing to its source — whether that's 
+a bug in the ordering system, a manual entry step, or a timing issue between item selection 
+and checkout — since unexplained pricing mismatches carry real revenue and trust risk at scale.
+
+**6. Consider a loyalty program for the top 20 highest-frequency customers.**
+These customers are sharply and clearly segmented from the rest of the customer base — an 
+8x drop-off separates the 20th-ranked customer from the 21st. This is a well-defined, 
+low-risk target group for a retention or loyalty initiative, since they're already 
+demonstrating high-value repeat behavior rather than needing to be persuaded into it.
+
+**7. Treat the supplier cost analysis as inconclusive, not actionable, until more data exists.**
+Since each supplier maps to exactly one product category with no overlap, the current data 
+can't distinguish supplier effectiveness from category-level pricing differences. Before 
+making any supplier negotiation or switching decisions based on this analysis, the business 
+would need cost data from multiple suppliers within the same category.
+
 ---
 
 *A companion interactive Power BI dashboard visualizing these findings across 4 pages is 
