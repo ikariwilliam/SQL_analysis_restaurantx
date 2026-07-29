@@ -131,3 +131,22 @@ FROM staff s
 LEFT JOIN orders o ON s.staff_id = o.staff_id
 GROUP BY s.staff_id, s.staff_name
 ORDER BY avg_orders_per_active_day DESC
+
+--Rider performance — order completion rate per rider, quick vs. late delivery rate, and customer complaint rate per rider
+SELECT 
+    r.rider_name,
+    COUNT(DISTINCT o.order_id) AS total_orders_assigned,
+    COUNT(DISTINCT o.order_id) FILTER (WHERE o.order_status = 'Completed') AS completed_orders,
+    ROUND(100.0 * COUNT(DISTINCT o.order_id) FILTER (WHERE o.order_status = 'Completed') 
+        / NULLIF(COUNT(DISTINCT o.order_id), 0), 2) AS completion_rate_pct,
+    COUNT(DISTINCT o.order_id) FILTER (WHERE o.order_status = 'Delivered Late') AS late_orders,
+    ROUND(100.0 * COUNT(DISTINCT o.order_id) FILTER (WHERE o.order_status = 'Delivered Late') 
+        / NULLIF(COUNT(DISTINCT o.order_id), 0), 2) AS late_rate_pct,
+    COUNT(DISTINCT c.complaint_id) AS total_complaints,
+    ROUND(100.0 * COUNT(DISTINCT c.complaint_id) 
+        / NULLIF(COUNT(DISTINCT o.order_id), 0), 2) AS complaint_rate_pct
+FROM riders r
+LEFT JOIN orders o ON r.rider_id = o.rider_id
+LEFT JOIN complaints c ON o.order_id = c.order_id
+GROUP BY r.rider_id, r.rider_name
+ORDER BY total_orders_assigned DESC

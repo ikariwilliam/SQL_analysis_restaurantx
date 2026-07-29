@@ -242,3 +242,32 @@ even when working?
 - This is a good example of why a single aggregate metric (total orders) can be misleading — 
   digging into the rate (orders per active day) revealed the total-orders gap wasn't just 
   about frequency of work, but also about consistency of output while working
+
+  ## Q10: Rider Performance — Completion Rate, Late Delivery Rate, Complaint Rate
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+| Rider          | Orders | Completed | Completion Rate | Late | Late Rate | Complaints | Complaint Rate |
+|----------------|-------:|----------:|------------------:|-----:|-----------:|-----------:|-----------------:|
+| Rider Agnes    | 519    | 497       | 95.76%             | 0    | 0.00%      | 4          | 0.77%            |
+| Rider John     | 516    | 488       | 94.57%             | 0    | 0.00%      | 3          | 0.58%            |
+| Rider Grace    | 509    | 478       | 93.91%             | 0    | 0.00%      | 5          | 0.98%            |
+| Rider Sarah    | 507    | 482       | 95.07%             | 0    | 0.00%      | 3          | 0.59%            |
+| Rider Patience | 507    | 483       | 95.27%             | 0    | 0.00%      | 5          | 0.99%            |
+| **Rider Paul** | 500    | 305       | **61.00%**         | 167  | **33.40%** | 60         | **12.00%**       |
+| Rider Hope     | 495    | 472       | 95.35%             | 0    | 0.00%      | 2          | 0.40%            |
+| Rider Simon    | 492    | 452       | 91.87%             | 0    | 0.00%      | 5          | 2.03%            |
+| Rider Joy      | 492    | 460       | 93.50%             | 0    | 0.00%      | 5          | 1.02%            |
+| Rider James    | 463    | 441       | 95.25%             | 0    | 0.00%      | 3          | 0.65%            |
+
+- **Rider Paul is an extreme outlier across every metric measured.** Every other rider has a 
+  0% late-delivery rate and a completion rate above 91%. Paul's completion rate is 61%, his 
+  late-delivery rate is 33.4%, and his complaint rate (12%) is 6–30x higher than any other 
+  rider
+- This isn't a marginal underperformance — it's a distinct, isolated pattern affecting one 
+  rider out of ten, while the other nine are tightly clustered and consistent with each other
+- Given how sharply Paul's numbers diverge from every other rider, this looks like a rider 
+  worth immediate operational review — vehicle issues, route assignment problems, or a 
+  performance/attendance issue are all plausible explanations the data alone can't distinguish, 
+  but the pattern is clear enough that it wouldn't need statistical testing to justify action
