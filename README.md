@@ -112,3 +112,36 @@ Top 5 of the 20 most frequent customers (counting only orders over ₦15,000):
 - The top 20 customers all fall within a tight range of 81–113 qualifying orders each
 - There's a sharp drop-off right after rank 20 — the 21st most frequent customer has only 12 qualifying orders, less than a sixth of the 20th-ranked customer's total (81). This isn't a gradual decline; it's a clear break, suggesting these top 20 form a distinct high-frequency customer segment rather than simply being the natural tail end of a smooth distribution
 - This kind of sharp segmentation would be a strong candidate for a loyalty/VIP program targeting analysis, since these customers behave meaningfully differently from the rest of the customer base
+
+## Q5: Margin Analysis — Profitable vs. Just High-Volume
+See [sql/queries.sql](sql/queries.sql) for the full queries.
+
+**Findings:**
+
+Top 5 products by total margin:
+1. Grills & Suya Item #5 — ₦9,127,300 margin
+2. Grills & Suya Item #7 — ₦7,048,800 margin
+3. Grills & Suya Item #14 — ₦5,548,400 margin
+4. Rice & Swallow Item #8 — ₦3,823,950 margin
+5. Grills & Suya Item #26 — ₦3,578,400 margin
+
+Bottom 5 products by total margin:
+36. Drinks & Beverage Item #36 — ₦172,000 margin
+37. Sides & Extra Item #37 — ₦231,600 margin
+38. Sides & Extra Item #38 — ₦243,900 margin
+39. Drinks & Beverage Item #40 — ₦247,000 margin
+40. Sides & Extra Item #20 — ₦381,000 margin
+
+- **Volume doesn't equal profitability.** Sides & Extra Item #2 was the #1 best-selling product by units (Q1), but ranks only #18 of 40 by margin. Grills & Suya Item #5 — the #2 best seller by volume — is the #1 product by margin, generating over 23x more profit than the lowest-margin product
+- **Grills & Suya dominates the top of the margin ranking**, taking 4 of the top 5 spots — this category likely carries a higher price-to-cost ratio than Sides & Extras or Drinks & Beverage, which fill most of the bottom of the list
+
+Axis (delivery zone) margin ranking (top and bottom 3 of 19):
+1. Ikota — ₦14,527,400 margin
+2. Ajah — ₦7,270,850 margin
+3. Ikate — ₦5,745,000 margin
+...
+17. LBS — ₦331,350 margin
+18. General Paint — ₦144,050 margin
+
+- **Ikota is both the highest-volume zone (Q2) and the highest-margin zone** — nearly double the next-best zone (Ajah), confirming its dominance isn't just about order count but translates directly into profit
+- General Paint and LBS remain the weakest zones on margin too, consistent with their low order volume from Q2 — no surprising reversal here, unlike the product-level findings

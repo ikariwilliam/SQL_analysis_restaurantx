@@ -1,11 +1,11 @@
--- Q1 Top 5 products by quantity sold
+-- Q1 Top 5 and bottom 3 products by units sold
+-- Top 5 products by quantity sold
 SELECT p.product_id, p.product_name, SUM(oi.quantity) AS total_sold
 FROM order_items oi
 JOIN products p ON oi.product_id = p.product_id
 GROUP BY p.product_id
 ORDER BY total_sold DESC
 LIMIT 5
-
 -- Bottom 3 products by quantity sold
 SELECT p.product_id,p.product_name, SUM(oi.quantity) AS total_sold
 FROM order_items oi
@@ -38,3 +38,27 @@ WHERE o.final_amount_charged > 15000
 GROUP BY c.customer_id, c.name, c.axis
 ORDER BY order_count DESC
 LIMIT 20
+
+-- Q4 5. Margin analysis — which products/areas are actually profitable vs. just high-volume
+-- Product margin
+SELECT 
+    p.product_name,
+    p.category,
+    SUM(oi.quantity) AS total_qty_sold,
+    SUM(oi.quantity * oi.unit_price_at_sale) AS total_revenue,
+    SUM(oi.quantity * p.unit_cost) AS total_cost,
+    SUM(oi.quantity * (oi.unit_price_at_sale - p.unit_cost)) AS total_margin
+FROM order_items oi
+JOIN products p ON oi.product_id = p.product_id
+GROUP BY p.product_name, p.category
+ORDER BY total_margin DESC
+-- Axis margin
+SELECT 
+    o.axis,
+    SUM(oi.quantity * oi.unit_price_at_sale) AS total_revenue,
+    SUM(oi.quantity * (oi.unit_price_at_sale - p.unit_cost)) AS total_margin
+FROM order_items oi
+JOIN products p ON oi.product_id = p.product_id
+JOIN orders o ON oi.order_id = o.order_id
+GROUP BY o.axis
+ORDER BY total_margin DESC
