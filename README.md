@@ -165,3 +165,20 @@ See [sql/queries.sql](sql/queries.sql) for the full query.
 
 - **Friday has both the highest order volume AND the highest cancellation rate** (8.84%) — over 3x higher than Saturday, the lowest (2.97%). This compounds the Q3 finding that Friday drives high volume with lower average order value; now it's also shedding the highest share of that volume to cancellations
 - Every other day sits in a fairly tight band (2.97%–5.71%), meaning Friday is a genuine outlier rather than part of a gradual trend — worth investigating what's operationally different about Fridays (staffing, order backlog, rider availability) that might be driving both the volume spike and the cancellation spike together
+
+## Q7: Repeat vs. One-Time Customers
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+- One-time customers: 0 (0%)
+- Repeat customers: 400 (100%)
+
+**Note on this result:** every customer in this dataset has placed more than one order, 
+meaning there are no genuine one-time customers to compare against repeat customers. 
+This is very likely an artifact of how the synthetic data was generated — customers 
+appear to have been assigned a batch of multiple orders each, rather than modeling some 
+customers as single-purchase/non-returning. A real food delivery business would typically 
+show meaningful churn, with a portion of customers never returning after their first order. 
+This metric isn't representative of realistic customer retention behavior in this dataset 
+and should be interpreted with that limitation in mind.
