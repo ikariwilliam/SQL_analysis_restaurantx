@@ -102,3 +102,32 @@ FROM order_calc
 WHERE subtotal_amount <> calculated_subtotal
    OR (subtotal_amount - COALESCE(discount_amount, 0)) <> final_amount_charged
    OR (COALESCE(discount_amount, 0) / NULLIF(subtotal_amount, 0)) > 0.5;
+
+-- Q9 9. Staff performance — which customer service staff processes the most orders, and is there a difference in order accuracy/cancellation rate by staff member
+SELECT 
+    s.staff_name,
+    s.role,
+    COUNT(DISTINCT o.order_id) AS total_orders_processed,
+    COUNT(DISTINCT o.order_id) FILTER (WHERE o.order_status = 'Cancelled') AS cancelled_orders,
+    ROUND(100.0 * COUNT(DISTINCT o.order_id) FILTER (WHERE o.order_status = 'Cancelled') 
+        / NULLIF(COUNT(DISTINCT o.order_id), 0), 2) AS cancellation_rate_pct,
+    COUNT(DISTINCT c.complaint_id) AS total_complaints,
+    ROUND(100.0 * COUNT(DISTINCT c.complaint_id) 
+        / NULLIF(COUNT(DISTINCT o.order_id), 0), 2) AS complaint_rate_pct
+FROM staff s
+LEFT JOIN orders o ON s.staff_id = o.staff_id
+LEFT JOIN complaints c ON o.order_id = c.order_id
+GROUP BY s.staff_id, s.staff_name, s.role
+ORDER BY total_orders_processed DESC
+
+-- Follow-up: CSR Peace had far fewer total orders than the other 3 staff — 
+-- checking whether this is a tenure/activity issue or a throughput issue
+SELECT 
+    s.staff_name,
+    COUNT(o.order_id) AS total_orders,
+    COUNT(DISTINCT DATE(o.order_timestamp)) AS active_days,
+    ROUND(COUNT(o.order_id)::numeric / NULLIF(COUNT(DISTINCT DATE(o.order_timestamp)), 0), 2) AS avg_orders_per_active_day
+FROM staff s
+LEFT JOIN orders o ON s.staff_id = o.staff_id
+GROUP BY s.staff_id, s.staff_name
+ORDER BY avg_orders_per_active_day DESC
