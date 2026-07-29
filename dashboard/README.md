@@ -24,4 +24,22 @@ PostgreSQL database via Import mode.
 
 Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
 
----
+## Page 2: Product & Revenue Deep Dive
+
+![Page 2: Product & Revenue](screenshots/page2_product_revenue.jpg)
+
+**What it shows:**
+- **Most/Least Profitable Products** — top 5 and bottom 5 products by total margin, 
+  confirming that Grills & Suya items dominate the most profitable end, while Sides & 
+  Extras and Drinks & Beverage cluster at the low end — the opposite pattern from units 
+  sold, where those same categories lead in volume
+- **Top 10 Margin by Delivery Axis** — Ikota leads on profit as well as volume, confirming 
+  its dominance isn't just about order count
+- **Units Sold vs. Margin by Product** (scatter) — visually demonstrates that sales volume 
+  and profitability are not correlated in this dataset. High-volume products cluster at 
+  moderate-to-low margin, while the highest-margin product sits at a mid-range volume, 
+  not the top seller
+- **Flagged Orders card** — 110 of 5,000 orders (2.2%) flagged for a subtotal-vs-line-items 
+  mismatch, consistent with the Q8 discrepancy check
+
+Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
