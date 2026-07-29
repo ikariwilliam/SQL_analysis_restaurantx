@@ -74,3 +74,23 @@ Lowest order volume:
 - Ikota accounts for roughly 20% of all orders on its own — more than double the next-closest zone (Ajah) — suggesting either a dense customer base or strong brand presence concentrated in that axis
 - General Paint and LBS are outliers at the low end, each under 35 orders — over 25x smaller than Ikota. Given the gap is this large, these may be smaller/newer delivery zones or edge-of-coverage areas rather than typical zones performing poorly
 - The remaining 14 zones fall in a much more gradual range (100–350 orders), suggesting the business has one dominant hub (Ikota) surrounded by a fairly even spread of secondary zones, plus two clear long-tail outliers
+
+## Q3: Busiest Day and Lowest Average Order Day (by Day of Week)
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+| Day       | Total Orders | Avg Order Value (₦) |
+|-----------|-------------:|---------------------:|
+| Friday    | 1,279        | 31,694.50            |
+| Tuesday   | 708          | 32,091.70            |
+| Saturday  | 674          | 32,283.07            |
+| Thursday  | 665          | 33,141.39            |
+| Monday    | 663          | 33,526.59            |
+| Wednesday | 637          | 33,378.38            |
+| Sunday    | 374          | 32,351.45            |
+
+- **Busiest day by order count: Friday** (1,279 orders) — nearly double the next-highest day (Tuesday, 708)
+- **Lowest order count: Sunday** (374 orders) — the quietest day of the week by volume
+- **Lowest average order value: Friday** (₦31,694.50) — notably, this is the *same* day that has the highest order count. This suggests Friday's volume is driven by a higher number of smaller-value orders rather than proportionally higher revenue per order — worth investigating whether this reflects different customer behavior (e.g. quick weekday lunch orders) or a promotional pattern specific to Fridays
+- Despite having the fewest orders, Sunday's average order value (₦32,351.45) is actually mid-pack — not the lowest, meaning low volume on Sunday isn't accompanied by low-value orders
