@@ -73,3 +73,14 @@ FROM orders
 GROUP BY TO_CHAR(order_timestamp, 'Day')
 ORDER BY cancellation_rate_pct DESC;
 
+-- Repeat vs. one-time customers — what % of customers only ordered once vs. came back
+SELECT
+    COUNT(*) FILTER (WHERE order_count = 1) AS one_time_customers,
+    COUNT(*) FILTER (WHERE order_count > 1) AS repeat_customers,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE order_count = 1) / COUNT(*), 2) AS one_time_pct,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE order_count > 1) / COUNT(*), 2) AS repeat_pct
+FROM (
+    SELECT customer_id, COUNT(order_id) AS order_count
+    FROM orders
+    GROUP BY customer_id
+) customer_orders
