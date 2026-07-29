@@ -271,3 +271,28 @@ See [sql/queries.sql](sql/queries.sql) for the full query.
   worth immediate operational review — vehicle issues, route assignment problems, or a 
   performance/attendance issue are all plausible explanations the data alone can't distinguish, 
   but the pattern is clear enough that it wouldn't need statistical testing to justify action
+
+  ## Q11: Supplier Cost Analysis — Cost-Effectiveness and Margin Correlation
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+| Supplier   | Category               | Products Supplied | Avg Unit Cost (₦) | Avg Product Margin (₦) |
+|------------|-------------------------|--------------------:|---------------------:|--------------------------:|
+| Supplier F | Fresh Produce            | 5                    | 2,850.00              | 2,930.00                  |
+| Supplier A | Poultry & Meat           | 9                    | 2,427.78              | 2,594.44                  |
+| Supplier B | Grains & Foodstuffs      | 6                    | 2,175.00              | 2,091.67                  |
+| Supplier E | Spices & Condiments      | 4                    | 1,450.00              | 1,900.00                  |
+| Supplier D | Packaging & Disposables  | 6                    | 1,933.33              | 1,800.00                  |
+| Supplier C | Beverages & Drinks       | 10                   | 4,315.00              | 1,725.00                  |
+
+- **Supplier F (Fresh Produce) has the highest average product margin** (₦2,930.00), while 
+  **Supplier C (Beverages & Drinks) has the lowest** (₦1,725.00) despite having the highest 
+  average unit cost (₦4,315.00) — high input cost isn't being fully passed through to margin 
+  for this supplier's products
+- **Important limitation:** each supplier in this dataset supplies exactly one product category, 
+  with no overlap between suppliers. This means margin differences here cannot be cleanly 
+  attributed to "supplier choice" as a variable — they're equally explainable by inherent 
+  differences between food categories (e.g. beverages naturally pricing differently than 
+  produce). A true supplier-effectiveness comparison would require multiple suppliers 
+  competing within the same category, which this dataset doesn't include

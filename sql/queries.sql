@@ -132,7 +132,7 @@ LEFT JOIN orders o ON s.staff_id = o.staff_id
 GROUP BY s.staff_id, s.staff_name
 ORDER BY avg_orders_per_active_day DESC
 
---Rider performance — order completion rate per rider, quick vs. late delivery rate, and customer complaint rate per rider
+-- Q10 Rider performance — order completion rate per rider, quick vs. late delivery rate, and customer complaint rate per rider
 SELECT 
     r.rider_name,
     COUNT(DISTINCT o.order_id) AS total_orders_assigned,
@@ -150,3 +150,15 @@ LEFT JOIN orders o ON r.rider_id = o.rider_id
 LEFT JOIN complaints c ON o.order_id = c.order_id
 GROUP BY r.rider_id, r.rider_name
 ORDER BY total_orders_assigned DESC
+
+-- Q11 Supplier cost analysis — most cost-effective suppliers, and whether supplier choice correlates with product margin
+SELECT 
+    sup.supplier_name,
+    sup.supply_category,
+    COUNT(p.product_id) AS products_supplied,
+    ROUND(AVG(p.unit_cost), 2) AS avg_unit_cost,
+    ROUND(AVG(p.unit_price - p.unit_cost), 2) AS avg_product_margin
+FROM suppliers sup
+JOIN products p ON sup.supplier_id = p.supplier_id
+GROUP BY sup.supplier_id, sup.supplier_name, sup.supply_category
+ORDER BY avg_product_margin DESC
