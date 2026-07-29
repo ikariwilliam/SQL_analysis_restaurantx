@@ -145,3 +145,23 @@ Axis (delivery zone) margin ranking (top and bottom 3 of 19):
 
 - **Ikota is both the highest-volume zone (Q2) and the highest-margin zone** — nearly double the next-best zone (Ajah), confirming its dominance isn't just about order count but translates directly into profit
 - General Paint and LBS remain the weakest zones on margin too, consistent with their low order volume from Q2 — no surprising reversal here, unlike the product-level findings.
+
+## Q6: Order Cancellation Rate — Overall and by Day
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+| Day       | Total Orders | Cancelled | Cancellation Rate |
+|-----------|-------------:|----------:|-------------------:|
+| Friday    | 1,279        | 113       | 8.84%               |
+| Thursday  | 665          | 38        | 5.71%               |
+| Monday    | 663          | 32        | 4.83%               |
+| Tuesday   | 708          | 31        | 4.38%               |
+| Wednesday | 637          | 27        | 4.24%               |
+| Sunday    | 374          | 14        | 3.74%               |
+| Saturday  | 674          | 20        | 2.97%               |
+
+**Overall cancellation rate: 5.5%** (275 of 5,000 orders)
+
+- **Friday has both the highest order volume AND the highest cancellation rate** (8.84%) — over 3x higher than Saturday, the lowest (2.97%). This compounds the Q3 finding that Friday drives high volume with lower average order value; now it's also shedding the highest share of that volume to cancellations
+- Every other day sits in a fairly tight band (2.97%–5.71%), meaning Friday is a genuine outlier rather than part of a gradual trend — worth investigating what's operationally different about Fridays (staffing, order backlog, rider availability) that might be driving both the volume spike and the cancellation spike together
