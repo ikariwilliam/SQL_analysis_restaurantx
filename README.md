@@ -183,3 +183,24 @@ show meaningful churn, with a portion of customers never returning after their f
 This metric isn't representative of realistic customer retention behavior in this dataset 
 and should be interpreted with that limitation in mind.
 
+## Q8: Discount / Pricing Discrepancy Check
+See [sql/queries.sql](sql/queries.sql) for the full query.
+
+**Findings:**
+
+This query flags any order where:
+1. The recorded subtotal doesn't match the sum of its line items
+2. `subtotal − discount` doesn't equal the final amount charged
+3. The discount exceeds 50% of the subtotal
+
+Results: **110 of 5,000 orders (2.2%)** were flagged — all for reason #1 (subtotal ≠ sum of 
+line items). Zero orders failed the final-amount check, and zero orders had an abnormally 
+high discount ratio.
+
+- The discount and final-amount logic is fully consistent across the entire dataset — every 
+  order correctly applies `subtotal − discount = final_amount_charged`, and no order carries 
+  a suspiciously large discount
+- The 110 flagged orders all stem from a mismatch between the recorded subtotal and the actual 
+  sum of order-item totals — these represent genuine pricing/recording discrepancies worth a 
+  closer audit, similar in nature to a pricing diagnostic issue previously identified and 
+  resolved in a prior operations role

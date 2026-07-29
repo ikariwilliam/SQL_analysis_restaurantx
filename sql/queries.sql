@@ -85,7 +85,7 @@ FROM (
     GROUP BY customer_id
 ) customer_orders
 
--- Discount/pricing discrepancy check — orders where the recorded amount doesn't match the sum of item totals, or where discount % looks abnormally high
+-- Q8 Discount/pricing discrepancy check — orders where the recorded amount doesn't match the sum of item totals, or where discount % looks abnormally high
 WITH order_calc AS (
     SELECT 
         o.order_id,
