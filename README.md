@@ -80,17 +80,19 @@ See [sql/queries.sql](sql/queries.sql) for the full query.
 
 **Findings:**
 
-| Day       | Total Orders | Avg Order Value (₦) |
-|-----------|-------------:|---------------------:|
-| Friday    | 1,279        | 31,694.50            |
-| Tuesday   | 708          | 32,091.70            |
-| Saturday  | 674          | 32,283.07            |
-| Thursday  | 665          | 33,141.39            |
-| Monday    | 663          | 33,526.59            |
-| Wednesday | 637          | 33,378.38            |
-| Sunday    | 374          | 32,351.45            |
+| Day       | Total Orders | Avg Amount Charged (₦) | Total Revenue (₦) |
+|-----------|-------------:|-------------------------:|--------------------:|
+| Friday    | 1,279        | 31,694.50                | 40,537,267.44        |
+| Tuesday   | 708          | 32,091.70                | 22,720,922.37        |
+| Monday    | 663          | 33,526.59                | 22,228,128.18        |
+| Thursday  | 665          | 33,141.39                | 22,039,021.83        |
+| Saturday  | 674          | 32,283.07                | 21,758,787.22        |
+| Wednesday | 637          | 33,378.38                | 21,262,028.41        |
+| Sunday    | 374          | 32,351.45                | 12,099,441.16        |
 
-- **Busiest day by order count: Friday** (1,279 orders) — nearly double the next-highest day (Tuesday, 708)
-- **Lowest order count: Sunday** (374 orders) — the quietest day of the week by volume
-- **Lowest average order value: Friday** (₦31,694.50) — notably, this is the *same* day that has the highest order count. This suggests Friday's volume is driven by a higher number of smaller-value orders rather than proportionally higher revenue per order — worth investigating whether this reflects different customer behavior (e.g. quick weekday lunch orders) or a promotional pattern specific to Fridays
-- Despite having the fewest orders, Sunday's average order value (₦32,351.45) is actually mid-pack — not the lowest, meaning low volume on Sunday isn't accompanied by low-value orders
+*Note: "Avg Amount Charged" is the post-discount amount per order. "Total Revenue" is the 
+sum of all orders for that day — these tell different stories.*
+
+- **Busiest day by order count and revenue: Friday** — 1,279 orders generating ₦40.5M, nearly double the next-highest day (Tuesday, ₦22.7M)
+- **Friday also has the lowest average order value** (₦31,694.50) — but this does NOT mean it's a weak sales day. High order volume more than compensates for smaller average order size, making Friday the strongest revenue day of the week by a wide margin
+- **Sunday is the genuinely weak day** — lowest order count (374) AND lowest total revenue (₦12.1M), despite a mid-pack average order value. Low volume, not low order value, is what drives Sunday's underperformance
