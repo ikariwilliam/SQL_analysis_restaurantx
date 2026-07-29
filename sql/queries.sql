@@ -20,3 +20,13 @@ FROM orders
 GROUP BY axis
 ORDER BY total_orders DESC
 
+--Busiest day and lowest average order value by day of week
+SELECT 
+    TO_CHAR(order_timestamp, 'Day') AS day_of_week,
+    COUNT(order_id) AS total_orders,
+    ROUND(AVG(final_amount_charged), 2) AS avg_amount_charged,
+    SUM(final_amount_charged) AS total_revenue
+FROM orders
+GROUP BY TO_CHAR(order_timestamp, 'Day')
+ORDER BY total_orders DESC
+
