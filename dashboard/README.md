@@ -40,7 +40,7 @@ Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
   moderate-to-low margin, while the highest-margin product sits at a mid-range volume, 
   not the top seller
 - **Flagged Orders card** — 110 of 5,000 orders (2.2%) flagged for a subtotal-vs-line-items 
-  mismatch, consistent with the Q8 discrepancy check
+  mismatch, consistent with the Q7 discrepancy check
 
 Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
 
@@ -68,10 +68,10 @@ Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
 - **Top 20 Most Frequent Customers** (orders above ₦15k) — confirms the sharp segmentation 
   found in Q4: all 20 customers fall within 81–113 qualifying orders, distinctly separated 
   from the rest of the customer base
-- **Average Margin by Supplier** — average per-product margin, matching the Q11 analysis. 
+- **Average Margin by Supplier** — average per-product margin, matching the Q10 analysis. 
   Supplier F (Fresh Produce) leads at ~₦2,930 average margin, while Supplier C (Beverages & 
   Drinks) trails at ~₦1,725, despite having the highest average unit cost — its higher input 
-  cost isn't being fully passed through to margin. As noted in Q11, each supplier maps to 
+  cost isn't being fully passed through to margin. As noted in Q10, each supplier maps to 
   exactly one product category with no overlap, so this reflects category-level differences 
   as much as supplier effectiveness
 

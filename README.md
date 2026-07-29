@@ -6,7 +6,7 @@ End-to-end restaurant operations &amp; financial analysis project using PostgreS
 This project analyzes operational and financial data for a synthetic Lekki/Ikota-corridor 
 food delivery business. Using a relational PostgreSQL database of 5,000 orders, 400 customers, 
 and 40 products, I answer 10 real-world business questions covering sales performance, 
-delivery zone patterns, customer retention, staff and rider performance, and supplier cost 
+delivery zone patterns, customer purchasing patterns, staff and rider performance and supplier cost 
 efficiency. Findings are visualized in an interactive Power BI dashboard.
 
 ## Tools
@@ -26,11 +26,10 @@ efficiency. Findings are visualized in an interactive Power BI dashboard.
 4. Top 20 most frequent customers, counting only orders above ₦15k
 5. Margin analysis — which products/areas are profitable vs. just high-volume
 6. Order cancellation rate — overall and by day
-7. Repeat vs. one-time customers
-8. Discount/pricing discrepancy check
-9. Staff performance — order volume and cancellation/complaint rate by staff member
-10. Rider performance — completion rate, late-delivery rate, complaint rate
-11. Supplier cost analysis — cost-effectiveness and margin correlation
+7. Discount/pricing discrepancy check
+8. Staff performance — order volume and cancellation/complaint rate by staff member
+9. Rider performance — completion rate, late-delivery rate, complaint rate
+10. Supplier cost analysis — cost-effectiveness and margin correlation
 
 ---
 
@@ -73,17 +72,11 @@ zone as well as the highest-volume one. On the other end, General Paint and LBS 
 consistent bottom performers across both order volume and margin, suggesting they may be 
 edge-of-coverage zones rather than core delivery areas.
 
-**5. Not every question had a clean answer — and that's a finding too.**
-Two questions surfaced real limitations in the dataset rather than clean insights:
-- 100% of customers were repeat customers (zero one-time buyers), which is unrealistic for 
-  a real delivery business and most likely reflects how the synthetic data was generated 
-  rather than genuine customer loyalty.
-- Supplier cost-effectiveness couldn't be cleanly separated from product category, since 
-  each supplier in this dataset supplies exactly one category with no overlap — so "supplier 
-  choice" and "category" are confounded variables here.
-
-Flagging these limitations honestly, rather than forcing a narrative the data doesn't 
-support, was treated as part of the analysis rather than something to work around.
+**Limitations.**
+One question surfaced a real limitation in the dataset rather than a clean insight: 
+supplier cost-effectiveness couldn't be cleanly separated from product category, since each 
+supplier in this dataset supplies exactly one category with no overlap — so "supplier choice" 
+and "category" are confounded variables here.
 
 ---
 
@@ -223,24 +216,7 @@ See [sql/queries.sql](sql/queries.sql) for the full query.
 - **Friday has both the highest order volume AND the highest cancellation rate** (8.84%) — over 3x higher than Saturday, the lowest (2.97%). This compounds the Q3 finding that Friday drives high volume with lower average order value; now it's also shedding the highest share of that volume to cancellations
 - Every other day sits in a fairly tight band (2.97%–5.71%), meaning Friday is a genuine outlier rather than part of a gradual trend — worth investigating what's operationally different about Fridays (staffing, order backlog, rider availability) that might be driving both the volume spike and the cancellation spike together
 
-## Q7: Repeat vs. One-Time Customers
-See [sql/queries.sql](sql/queries.sql) for the full query.
-
-**Findings:**
-
-- One-time customers: 0 (0%)
-- Repeat customers: 400 (100%)
-
-**Note on this result:** every customer in this dataset has placed more than one order, 
-meaning there are no genuine one-time customers to compare against repeat customers. 
-This is very likely an artifact of how the synthetic data was generated — customers 
-appear to have been assigned a batch of multiple orders each, rather than modeling some 
-customers as single-purchase/non-returning. A real food delivery business would typically 
-show meaningful churn, with a portion of customers never returning after their first order. 
-This metric isn't representative of realistic customer retention behavior in this dataset 
-and should be interpreted with that limitation in mind.
-
-## Q8: Discount / Pricing Discrepancy Check
+## Q7: Discount / Pricing Discrepancy Check
 See [sql/queries.sql](sql/queries.sql) for the full query.
 
 **Findings:**
@@ -262,7 +238,7 @@ high discount ratio.
   closer audit, similar in nature to a pricing diagnostic issue previously identified and 
   resolved in a prior operations role
 
-## Q9: Staff Performance — Order Volume, Cancellation Rate, and Complaint Rate
+## Q8: Staff Performance — Order Volume, Cancellation Rate, and Complaint Rate
 See [sql/queries.sql](sql/queries.sql) for both queries.
 
 **Initial findings (order volume, cancellation rate, complaint rate):**
@@ -300,7 +276,7 @@ even when working?
   digging into the rate (orders per active day) revealed the total-orders gap wasn't just 
   about frequency of work, but also about consistency of output while working
 
-  ## Q10: Rider Performance — Completion Rate, Late Delivery Rate, Complaint Rate
+  ## Q9: Rider Performance — Completion Rate, Late Delivery Rate, Complaint Rate
 See [sql/queries.sql](sql/queries.sql) for the full query.
 
 **Findings:**
@@ -329,7 +305,7 @@ See [sql/queries.sql](sql/queries.sql) for the full query.
   performance/attendance issue are all plausible explanations the data alone can't distinguish, 
   but the pattern is clear enough that it wouldn't need statistical testing to justify action
 
-  ## Q11: Supplier Cost Analysis — Cost-Effectiveness and Margin Correlation
+  ## Q10: Supplier Cost Analysis — Cost-Effectiveness and Margin Correlation
 See [sql/queries.sql](sql/queries.sql) for the full query.
 
 **Findings:**

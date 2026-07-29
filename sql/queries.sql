@@ -73,19 +73,7 @@ FROM orders
 GROUP BY TO_CHAR(order_timestamp, 'Day')
 ORDER BY cancellation_rate_pct DESC;
 
--- Q7 Repeat vs. one-time customers — what % of customers only ordered once vs. came back
-SELECT
-    COUNT(*) FILTER (WHERE order_count = 1) AS one_time_customers,
-    COUNT(*) FILTER (WHERE order_count > 1) AS repeat_customers,
-    ROUND(100.0 * COUNT(*) FILTER (WHERE order_count = 1) / COUNT(*), 2) AS one_time_pct,
-    ROUND(100.0 * COUNT(*) FILTER (WHERE order_count > 1) / COUNT(*), 2) AS repeat_pct
-FROM (
-    SELECT customer_id, COUNT(order_id) AS order_count
-    FROM orders
-    GROUP BY customer_id
-) customer_orders
-
--- Q8 Discount/pricing discrepancy check — orders where the recorded amount doesn't match the sum of item totals, or where discount % looks abnormally high
+-- Q7 Discount/pricing discrepancy check — orders where the recorded amount doesn't match the sum of item totals, or where discount % looks abnormally high
 WITH order_calc AS (
     SELECT 
         o.order_id,
@@ -103,7 +91,7 @@ WHERE subtotal_amount <> calculated_subtotal
    OR (subtotal_amount - COALESCE(discount_amount, 0)) <> final_amount_charged
    OR (COALESCE(discount_amount, 0) / NULLIF(subtotal_amount, 0)) > 0.5;
 
--- Q9 9. Staff performance — which customer service staff processes the most orders, and is there a difference in order accuracy/cancellation rate by staff member
+-- Q8. Staff performance — which customer service staff processes the most orders, and is there a difference in order accuracy/cancellation rate by staff member
 SELECT 
     s.staff_name,
     s.role,
@@ -132,7 +120,7 @@ LEFT JOIN orders o ON s.staff_id = o.staff_id
 GROUP BY s.staff_id, s.staff_name
 ORDER BY avg_orders_per_active_day DESC
 
--- Q10 Rider performance — order completion rate per rider, quick vs. late delivery rate, and customer complaint rate per rider
+-- Q9 Rider performance — order completion rate per rider, quick vs. late delivery rate, and customer complaint rate per rider
 SELECT 
     r.rider_name,
     COUNT(DISTINCT o.order_id) AS total_orders_assigned,
@@ -151,7 +139,7 @@ LEFT JOIN complaints c ON o.order_id = c.order_id
 GROUP BY r.rider_id, r.rider_name
 ORDER BY total_orders_assigned DESC
 
--- Q11 Supplier cost analysis — most cost-effective suppliers, and whether supplier choice correlates with product margin
+-- Q10 Supplier cost analysis — most cost-effective suppliers, and whether supplier choice correlates with product margin
 SELECT 
     sup.supplier_name,
     sup.supply_category,
