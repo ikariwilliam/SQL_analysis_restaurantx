@@ -144,4 +144,4 @@ Axis (delivery zone) margin ranking (top and bottom 3 of 19):
 18. General Paint — ₦144,050 margin
 
 - **Ikota is both the highest-volume zone (Q2) and the highest-margin zone** — nearly double the next-best zone (Ajah), confirming its dominance isn't just about order count but translates directly into profit
-- General Paint and LBS remain the weakest zones on margin too, consistent with their low order volume from Q2 — no surprising reversal here, unlike the product-level findings
+- General Paint and LBS remain the weakest zones on margin too, consistent with their low order volume from Q2 — no surprising reversal here, unlike the product-level findings.
