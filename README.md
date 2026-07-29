@@ -204,3 +204,41 @@ high discount ratio.
   sum of order-item totals — these represent genuine pricing/recording discrepancies worth a 
   closer audit, similar in nature to a pricing diagnostic issue previously identified and 
   resolved in a prior operations role
+
+## Q9: Staff Performance — Order Volume, Cancellation Rate, and Complaint Rate
+See [sql/queries.sql](sql/queries.sql) for both queries.
+
+**Initial findings (order volume, cancellation rate, complaint rate):**
+
+| Staff Name  | Orders Processed | Cancelled | Cancellation Rate | Complaints | Complaint Rate |
+|-------------|------------------:|----------:|--------------------:|-----------:|----------------:|
+| CSR Joseph  | 1,593             | 58        | 3.64%                | 36         | 2.26%            |
+| CSR Patience| 1,531             | 70        | 4.57%                | 26         | 1.70%            |
+| CSR Ruth    | 1,464             | 78        | 5.33%                | 27         | 1.84%            |
+| CSR Peace   | 412               | 69        | 16.75%               | 11         | 2.67%            |
+
+CSR Peace immediately stood out — far lower total orders than the other three, alongside 
+the highest cancellation and complaint rates. This raised a question the first query 
+couldn't answer on its own: is Peace just newer/less active, or is throughput itself lower 
+even when working?
+
+**Follow-up: average orders processed per active day**
+
+| Staff Name  | Active Days | Avg Orders/Active Day |
+|-------------|------------:|-------------------------:|
+| CSR Joseph  | 501         | 3.18                     |
+| CSR Patience| 498         | 3.07                     |
+| CSR Ruth    | 489         | 2.99                     |
+| CSR Peace   | 282         | 1.46                     |
+
+**Combined conclusion:**
+- CSR Peace was active on only 282 of 545 possible days (~52%), compared to 489–501 days 
+  for the other three staff — suggesting either a shorter tenure or an intermittent 
+  work pattern
+- Even accounting for fewer active days, Peace's throughput per active day (1.46) is 
+  roughly half the rate of the other three (~3.0–3.2) — so reduced activity alone doesn't 
+  fully explain the gap. Lower daily throughput combined with the highest cancellation 
+  and complaint rates suggests a genuine performance difference, not just fewer shifts worked
+- This is a good example of why a single aggregate metric (total orders) can be misleading — 
+  digging into the rate (orders per active day) revealed the total-orders gap wasn't just 
+  about frequency of work, but also about consistency of output while working
