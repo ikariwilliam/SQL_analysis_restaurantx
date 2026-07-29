@@ -34,6 +34,58 @@ efficiency. Findings are visualized in an interactive Power BI dashboard.
 
 ---
 
+## Key Takeaways
+
+Pulling together the patterns that showed up across multiple questions:
+
+**1. Friday is operationally distinct — and it compounds.**
+Friday drives the highest order volume (1,279 orders, nearly double the next-highest day) 
+but also has the lowest average order value AND the highest cancellation rate (8.84%, 
+over 3x the lowest day). Despite the smaller average order size, Friday still generates 
+the most total revenue by a wide margin — but the elevated cancellation rate suggests 
+something operationally strained about Fridays specifically (staffing, order backlog, or 
+rider availability), not just a naturally busier day.
+
+**2. Two clear outliers surfaced in staff and rider performance — both worth real operational follow-up.**
+- **CSR Peace** processes far fewer orders than the other three staff, is active on roughly 
+  half as many days, and has a cancellation rate 3–4x higher than her peers even accounting 
+  for reduced activity.
+- **Rider Paul** is the most extreme outlier in the entire dataset: a 61% completion rate 
+  and 33.4% late-delivery rate, versus 91%+ completion and 0% late-delivery for every other 
+  rider. His complaint rate (12%) is up to 30x higher than any other rider.
+
+Both patterns are isolated to a single individual rather than reflecting a team-wide issue — 
+exactly the kind of signal that's easy to miss in aggregate reporting but obvious once you 
+break performance out by person.
+
+**3. Sales volume and profitability are not the same thing.**
+The best-selling product by units (Sides & Extra Item #2) ranks only 18th of 40 products by 
+margin. The actual most profitable product (Grills & Suya Item #5) was only the second 
+best-seller by volume. Grills & Suya as a category dominates the top of the margin ranking, 
+while Sides & Extras and Drinks & Beverage — despite strong unit sales — fill most of the 
+bottom. A volume-only view of "top products" would have pointed the business toward the 
+wrong items to prioritize.
+
+**4. Ikota is the business's core hub, and its dominance holds up under scrutiny.**
+Ikota accounts for roughly 20% of all orders — more than double the next-closest zone — and 
+that dominance carries through to margin, not just order count, making it the highest-profit 
+zone as well as the highest-volume one. On the other end, General Paint and LBS are 
+consistent bottom performers across both order volume and margin, suggesting they may be 
+edge-of-coverage zones rather than core delivery areas.
+
+**5. Not every question had a clean answer — and that's a finding too.**
+Two questions surfaced real limitations in the dataset rather than clean insights:
+- 100% of customers were repeat customers (zero one-time buyers), which is unrealistic for 
+  a real delivery business and most likely reflects how the synthetic data was generated 
+  rather than genuine customer loyalty.
+- Supplier cost-effectiveness couldn't be cleanly separated from product category, since 
+  each supplier in this dataset supplies exactly one category with no overlap — so "supplier 
+  choice" and "category" are confounded variables here.
+
+Flagging these limitations honestly, rather than forcing a narrative the data doesn't 
+support, was treated as part of the analysis rather than something to work around.
+
+---
 
 ## Q1: Top 5 and Bottom 3 Products by Units Sold
 See [sql/queries.sql](sql/queries.sql) for the full query.
