@@ -43,3 +43,19 @@ Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
   mismatch, consistent with the Q8 discrepancy check
 
 Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
+
+## Page 3: Staff & Rider Performance
+
+![Page 3: Staff & Rider Performance](screenshots/page3_staff_rider_performance.jpg)
+
+**What it shows:**
+- **Staff Performance Table** — order volume, cancellation rate, and complaint rate per 
+  CSR. CSR Peace stands out with a 16.75% cancellation rate versus 3.64%–5.33% for the 
+  other three staff, despite processing far fewer total orders
+- **Rider Completion Rate** (bar chart) — Rider Paul is flagged in red, visually isolating 
+  the most extreme outlier in the entire dataset: a 61% completion rate versus 91%+ for 
+  every other rider
+- **Rider Detail Table** — full breakdown per rider including late-delivery rate. Paul is 
+  the only rider with any late deliveries at all (33.40%), while every other rider shows 0%
+
+Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
