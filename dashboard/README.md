@@ -59,3 +59,20 @@ Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
   the only rider with any late deliveries at all (33.40%), while every other rider shows 0%
 
 Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
+
+## Page 4: Customers & Suppliers
+
+![Page 4: Customers & Suppliers](screenshots/page4_customers_suppliers.jpg)
+
+**What it shows:**
+- **Top 20 Most Frequent Customers** (orders above ₦15k) — confirms the sharp segmentation 
+  found in Q4: all 20 customers fall within 81–113 qualifying orders, distinctly separated 
+  from the rest of the customer base
+- **Average Margin by Supplier** — average per-product margin, matching the Q11 analysis. 
+  Supplier F (Fresh Produce) leads at ~₦2,930 average margin, while Supplier C (Beverages & 
+  Drinks) trails at ~₦1,725, despite having the highest average unit cost — its higher input 
+  cost isn't being fully passed through to margin. As noted in Q11, each supplier maps to 
+  exactly one product category with no overlap, so this reflects category-level differences 
+  as much as supplier effectiveness
+
+Full interactive file: [Ikota_eats_dashboard.pbix](Ikota_eats_dashboard.pbix)
